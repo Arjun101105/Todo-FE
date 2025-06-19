@@ -32,7 +32,7 @@ const TaskModal = ({ isOpen, onClose, onSave, token, task }: TaskModalProps) => 
       setTitle(task.title || '');
       setDescription(task.description || '');
       setDueDate(task.dueDate ? new Date(task.dueDate).toISOString().split('T')[0] : '');
-      setTagId(task.tagId || '');
+      setTagId(typeof task.tagId === 'object' ? task.tagId?._id || '' : task.tagId || '');
       setCompleted(task.completed || false);
     } else {
       setTitle('');
@@ -181,7 +181,7 @@ const TaskModal = ({ isOpen, onClose, onSave, token, task }: TaskModalProps) => 
               
               <select
                 id="tag"
-                value={tagId}
+                value={typeof tagId === 'object' ? tagId?._id || '' : tagId || ''}
                 onChange={(e) => setTagId(e.target.value)}
                 className="block w-full p-3 border border-gray-200 rounded-lg bg-gray-50 focus:outline-none focus:ring-2 focus:ring-purple-300 transition duration-200 mb-3"
               >

@@ -41,6 +41,7 @@ export const getTodos = async (
     });
     return response.data;
   } catch (error) {
+    console.error('Failed to fetch todos:', error);
     throw new Error('Failed to fetch todos');
   }
 };
